@@ -1,0 +1,56 @@
+{% include 'header.html.twig' %}
+
+{#
+{{ dump(gitarok) }}
+#}
+
+<div class="container mt-5 d-flex justify-content-center">
+	<div class="col-sm-6">
+		<h1 class="display-5 text-center mb-2">
+			Új gitár felvitele</h1>
+		<form action="guitarAdd" method="POST">
+			<div class="form-group">
+				<label for="gyarto">Gyártó*</label>
+				<input type="text" class="form-control" name="gyarto" id="gyarto" placeholder="Gyártó" required>
+			</div>
+			<div class="form-group">
+				<label for="tipus">Típus*</label>
+				<input type="text" class="form-control" name="tipus" id="tipus" placeholder="Típus" required>
+			</div>
+			<div class="form-group">
+				<label for="kategoria_id">Kategória*</label>
+				<select class="form-select" name="kategoria_id" id="kategoria_id">
+					{% for gitar in gitarok %}
+						<option value="{{gitar.id}}">{{gitar.nev}}</option>
+					{% endfor %}
+				</select>
+				<div class="form-group">
+					<label for="hurok_szama">Húrok száma*</label>
+					<input type="number" class="form-control" name="hurok_szama" id="hurok_szama" placeholder="Húrok száma(csak szám)" required>
+				</div>
+				<div class="form-group">
+					<label for="ar">Ár*</label>
+					<input type="number" class="form-control" name="ar" id="ar" placeholder="Ár(csak szám)" required>
+				</div>
+				<div class="form-group">
+					<label for="raktar_mennyiseg">Mennyiség*</label>
+					<input type="number" class="form-control" name="raktar_mennyiseg" id="raktar_mennyiseg" placeholder="Mennyiség(csak szám)" required>
+				</div>
+
+				<div class="form-check mt-3">
+					<input type="checkbox" name="allapot" id="allapot" checked>
+					<label for="allapot">Aktív</label>
+				</div>
+				<div class="form-group mt-3 justify-content-between d-flex">
+					<a href="javascript:history.go(-1)" class="btn btn-warning">
+						<i class="fa-solid fa-arrow-left"></i>
+						Vissza</a>
+					<button type="submit" class="btn btn-success text-white" name="save">
+						<i class="fa-solid fa-floppy-disk"></i>
+						MENT
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	{% include 'footer.html.twig' %}

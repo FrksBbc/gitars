@@ -1,0 +1,43 @@
+{% include 'header.html.twig' %}
+
+{#
+{{ dump(gitarKategoriak) }}
+#}
+
+<div class="container">
+	<h1 class="display-5 text-center mt-3">Gitárok</h1>
+	<table class="table table-hover mt-5 text-center">
+		<tr>
+			<th>ID</th>
+			<th>Gyártó</th>
+			<th>Típus</th>
+			<th>Kategória id</th>
+			<th>Húrok száma</th>
+			<th>Ár</th>
+			<th>Mennyiség</th>
+			<th>Állapot</th>
+			<th>Műveletek</th>
+		</tr>
+		{% for gitar in gitarok %}
+			<tr>
+				<td>{{gitar.id}}</td>
+				<td>{{gitar.gyarto}}</td>
+				<td>{{gitar.tipus}}</td>
+				<td>{{gitar.nev}}</td>
+				<td>{{gitar.hurok_szama}}</td>
+				<td>{{gitar.ar}}</td>
+				<td>{{gitar.raktar_mennyiseg}}</td>
+				<td>{{gitar.allapot ? 'Aktív': 'Inaktív'}}</td>
+				<td>
+					<a class='btn btn-warning' href='guitarEdit/{{gitar.id}}'>
+						<i class="fa-solid fa-edit"></i>
+						Módosít</a>
+					<a class='btn btn-danger' href='guitarDelete/{{gitar.id}}'>
+						<i class="fa-solid fa-trash"></i>
+						Töröl</a>
+				</td>
+			{% endfor %}
+		</tr>
+	</table>
+</div>
+{% include 'footer.html.twig' %}
